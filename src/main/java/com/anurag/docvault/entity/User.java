@@ -1,4 +1,4 @@
-package com.example.docvault.entity;
+package com.anurag.docvault.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

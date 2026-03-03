@@ -1,6 +1,6 @@
-package com.example.docvault.config;
+package com.anurag.docvault.config;
 
-import com.example.docvault.security.JwtAuthFilter;
+import com.anurag.docvault.security.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

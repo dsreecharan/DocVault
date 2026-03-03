@@ -1,7 +1,7 @@
-package com.example.docvault.security;
+package com.anurag.docvault.security;
 
-import com.example.docvault.entity.User;
-import com.example.docvault.repository.UserRepository;
+import com.anurag.docvault.entity.User;
+import com.anurag.docvault.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

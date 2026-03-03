@@ -1,6 +1,6 @@
-package com.example.docvault.repository;
+package com.anurag.docvault.repository;
 
-import com.example.docvault.entity.UploadedDocument;
+import com.anurag.docvault.entity.UploadedDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

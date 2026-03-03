@@ -1,10 +1,10 @@
-package com.example.docvault.service;
+package com.anurag.docvault.service;
 
-import com.example.docvault.dto.AuthDTOs;
-import com.example.docvault.entity.User;
-import com.example.docvault.exception.AppException;
-import com.example.docvault.repository.UserRepository;
-import com.example.docvault.security.JwtUtil;
+import com.anurag.docvault.dto.AuthDTOs;
+import com.anurag.docvault.entity.User;
+import com.anurag.docvault.exception.AppException;
+import com.anurag.docvault.repository.UserRepository;
+import com.anurag.docvault.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,4 +1,4 @@
-package com.example.docvault.exception;
+package com.anurag.docvault.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

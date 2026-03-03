@@ -24,6 +24,7 @@ A secure and intelligent document management system with AI-powered summarizatio
 ### From Source
 
 1. Clone the repository
+
    ```bash
    git clone https://github.com/dsreecharan/DocVault.git
    cd DocVault
@@ -36,11 +37,13 @@ A secure and intelligent document management system with AI-powered summarizatio
    - Ollama
 
 3. Pull Llama3 model
+
    ```bash
    ollama pull llama3
    ```
 
 4. Configure `application.properties`
+
    ```properties
    spring.data.mongodb.uri=mongodb://localhost:27017/docvault
 
@@ -54,6 +57,7 @@ A secure and intelligent document management system with AI-powered summarizatio
    ```
 
 5. Run the application
+
    ```bash
    mvn spring-boot:run
    ```
@@ -101,7 +105,7 @@ Login as ADMIN:
 
 ```
 DocVault/
-├── src/main/java/com/example/docvault
+├── src/main/java/com/anurag/docvault
 │   ├── controller/
 │   ├── service/
 │   ├── repository/
@@ -127,6 +131,7 @@ DocVault/
 ## Tech Stack
 
 ### Backend
+
 - Spring Boot 3
 - Spring Security
 - JWT Authentication
@@ -134,10 +139,12 @@ DocVault/
 - Apache Tika
 
 ### AI
+
 - Ollama
 - Llama3 (Local LLM)
 
 ### Frontend
+
 - HTML5
 - CSS3
 - Vanilla JavaScript
@@ -177,15 +184,15 @@ DocVault/
 ## Contributing
 
 1. Fork the repository
-2. Create a feature branch  
+2. Create a feature branch
    ```bash
    git checkout -b feature/amazing-feature
    ```
-3. Commit your changes  
+3. Commit your changes
    ```bash
    git commit -m "Add amazing feature"
    ```
-4. Push to branch  
+4. Push to branch
    ```bash
    git push origin feature/amazing-feature
    ```

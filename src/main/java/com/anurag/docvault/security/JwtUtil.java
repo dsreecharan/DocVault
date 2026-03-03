@@ -1,4 +1,4 @@
-package com.example.docvault.security;
+package com.anurag.docvault.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

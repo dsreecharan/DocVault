@@ -1,4 +1,4 @@
-package com.example.docvault.dto;
+package com.anurag.docvault.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

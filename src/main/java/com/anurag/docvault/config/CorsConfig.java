@@ -1,4 +1,4 @@
-package com.example.docvault.config;
+package com.anurag.docvault.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,9 +1,9 @@
-package com.example.docvault.service;
+package com.anurag.docvault.service;
 
-import com.example.docvault.dto.AppDTOs;
-import com.example.docvault.entity.UploadedDocument;
-import com.example.docvault.exception.AppException;
-import com.example.docvault.repository.DocumentRepository;
+import com.anurag.docvault.dto.AppDTOs;
+import com.anurag.docvault.entity.UploadedDocument;
+import com.anurag.docvault.exception.AppException;
+import com.anurag.docvault.repository.DocumentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

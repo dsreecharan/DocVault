@@ -1,6 +1,6 @@
-package com.example.docvault.service;
+package com.anurag.docvault.service;
 
-import com.example.docvault.exception.AppException;
+import com.anurag.docvault.exception.AppException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

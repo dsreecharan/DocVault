@@ -1,8 +1,8 @@
-package com.example.docvault.controller;
+package com.anurag.docvault.controller;
 
-import com.example.docvault.dto.AppDTOs;
-import com.example.docvault.service.AdminService;
-import com.example.docvault.service.DocumentService;
+import com.anurag.docvault.dto.AppDTOs;
+import com.anurag.docvault.service.AdminService;
+import com.anurag.docvault.service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

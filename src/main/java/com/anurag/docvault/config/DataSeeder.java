@@ -1,7 +1,7 @@
-package com.example.docvault.config;
+package com.anurag.docvault.config;
 
-import com.example.docvault.entity.User;
-import com.example.docvault.repository.UserRepository;
+import com.anurag.docvault.entity.User;
+import com.anurag.docvault.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;

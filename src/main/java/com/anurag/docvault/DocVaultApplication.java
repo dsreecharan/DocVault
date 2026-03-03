@@ -1,4 +1,4 @@
-package com.example.docvault;
+package com.anurag.docvault;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

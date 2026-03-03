@@ -1,4 +1,4 @@
-package com.example.docvault.exception;
+package com.anurag.docvault.exception;
 
 public class AppException extends RuntimeException {
     public AppException(String message) {
