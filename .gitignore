@@ -1,33 +1,63 @@
-HELP.md
+########################################
+# Java / Spring Boot
+########################################
 target/
+*.log
+*.class
+*.jar
+*.war
+*.ear
+
+########################################
+# Maven
+########################################
 .mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+.mvn/wrapper/maven-wrapper.properties
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
+########################################
+# IDE Files
+########################################
+# IntelliJ
+.idea/
 *.iml
-*.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
+# VS Code
 .vscode/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+########################################
+# OS Files
+########################################
+.DS_Store
+Thumbs.db
+
+########################################
+# Application Secrets
+########################################
+application-local.properties
+.env
+
+########################################
+# Upload Folder (Generated Files)
+########################################
+uploads/
+
+########################################
+# Logs
+########################################
+logs/
+*.log
+
+########################################
+# Node (if frontend tools added later)
+########################################
+node_modules/
+
+########################################
+# Docker (if added later)
+########################################
+*.pid
