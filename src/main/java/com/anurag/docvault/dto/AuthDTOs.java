@@ -1,11 +1,28 @@
-// POST /auth/signup body
-SignupRequest  { name, email, password }
+package com.example.docvault.dto;
 
-// POST /auth/login body
-LoginRequest   { email, password }
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-// Response from both login and signup
-AuthResponse   { token, role, email }
-// The frontend saves token → Authorization header
-//              role   → decides which pages to show
-//              email  → displayed in sidebar
+public class AuthDTOs {
+
+    @Data @NoArgsConstructor @AllArgsConstructor
+    public static class SignupRequest {
+        private String name;
+        private String email;
+        private String password;
+    }
+
+    @Data @NoArgsConstructor @AllArgsConstructor
+    public static class LoginRequest {
+        private String email;
+        private String password;
+    }
+
+    @Data @NoArgsConstructor @AllArgsConstructor
+    public static class AuthResponse {
+        private String token;
+        private String role;
+        private String email;
+    }
+}

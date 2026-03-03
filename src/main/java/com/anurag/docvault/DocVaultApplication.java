@@ -1,13 +1,11 @@
-package com.anurag.docvault;
+package com.example.docvault;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DocVaultApplication {
-
+public class DocvaultApplication {
     public static void main(String[] args) {
-        SpringApplication.run(DocVaultApplication.class, args);
+        SpringApplication.run(DocvaultApplication.class, args);
     }
-
 }

@@ -1,21 +1,69 @@
-@Configuration @EnableWebSecurity @EnableMethodSecurity
+package com.example.docvault.config;
+
+import com.example.docvault.security.JwtAuthFilter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+@Configuration
+@EnableWebSecurity
+@EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) {
+    private final JwtAuthFilter jwtAuthFilter;
+    private final UserDetailsService userDetailsService;
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())          // CSRF off — JWT handles security
-                .cors(cors -> cors.configure(http))     // Use existing CorsConfig bean
-                .authorizeHttpRequests(auth -> auth
-                        // Static frontend files — public
-                        .requestMatchers('/', '/index.html', '/css/**', '/js/**').permitAll()
-                        // Auth API — public
-                        .requestMatchers('/auth/**').permitAll()
-                        // Protected APIs
-                        .requestMatchers('/admin/**').hasRole('ADMIN')
-                        .requestMatchers('/user/**').hasRole('USER')
-                        .anyRequest().authenticated()
-                )
-                .sessionManagement(STATELESS)           // No server-side sessions
-                .addFilterBefore(jwtAuthFilter, ...);   // Run JWT check first
+            .csrf(csrf -> csrf.disable())
+            .cors(cors -> cors.configure(http))  // uses CorsConfig bean — NO duplicate
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/index.html", "/css/**",
+                                 "/js/**", "/images/**", "/favicon.ico",
+                                 "/error").permitAll()
+                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/user/**").hasRole("USER")
+                .anyRequest().authenticated()
+            )
+            .sessionManagement(session -> session
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authenticationProvider(authenticationProvider())
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+        return http.build();
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(passwordEncoder());
+        return provider;
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(
+            AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

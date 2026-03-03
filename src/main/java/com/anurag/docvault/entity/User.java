@@ -1,11 +1,29 @@
-@Data @Builder @NoArgsConstructor @AllArgsConstructor
-@Document(collection = 'users')
+package com.example.docvault.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.index.Indexed;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(collection = "users")
 public class User {
-    @Id                          // MongoDB _id field
+
+    @Id
     private String id;
+
     private String name;
-    @Indexed(unique = true)      // MongoDB unique index on email
+
+    @Indexed(unique = true)
     private String email;
-    private String password;     // BCrypt hash — NEVER plain text
-    private String role;         // 'USER' or 'ADMIN'
+
+    private String password;  // Always stored as BCrypt hash
+
+    private String role;      // "USER" or "ADMIN"
 }

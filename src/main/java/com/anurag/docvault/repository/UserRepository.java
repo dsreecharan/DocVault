@@ -1,7 +1,13 @@
-public interface UserRepository extends MongoRepository<User, String> {
-    // Method name is parsed: find + By + Email → WHERE email = ?
-    Optional<User> findByEmail(String email);
+package com.example.docvault.repository;
 
-    // existsBy generates: SELECT COUNT(*) > 0 WHERE email = ?
+import com.example.docvault.entity.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface UserRepository extends MongoRepository<User, String> {
+    Optional<User> findByEmail(String email);
     boolean existsByEmail(String email);
 }
