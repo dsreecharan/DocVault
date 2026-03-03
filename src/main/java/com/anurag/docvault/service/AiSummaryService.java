@@ -5,51 +5,50 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class AiSummaryService {
 
-    @Value("${ai.api.url}")  private String apiUrl;
-    @Value("${ai.api.key}")  private String apiKey;
-    @Value("${ai.model}")    private String model;
+    @Value("${ai.api.url}")
+    private String apiUrl;   // http://localhost:11434/api/generate
+
+    @Value("${ai.model}")
+    private String model;    // llama3
 
     private final RestTemplate restTemplate = new RestTemplate();
 
     public String summarize(String text) {
-        if (apiKey == null || apiKey.equals("YOUR_OPENAI_API_KEY_HERE") || apiKey.isBlank()) {
-            return generatePlaceholder(text);
+
+        // If Ollama not running or text empty
+        if (text == null || text.isBlank()) {
+            return "No content available to summarize.";
         }
+
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setBearerAuth(apiKey);
-            Map<String, Object> body = Map.of(
-                "model", model,
-                "messages", List.of(Map.of(
-                    "role", "user",
-                    "content", "Summarize in 3-5 sentences:\n\n" + text
-                )),
-                "max_tokens", 300
-            );
-            HttpEntity<Map<String, Object>> req = new HttpEntity<>(body, headers);
-            ResponseEntity<Map> resp = restTemplate.postForEntity(apiUrl, req, Map.class);
-            if (resp.getStatusCode() == HttpStatus.OK && resp.getBody() != null) {
-                var choices = (List<Map<String, Object>>) resp.getBody().get("choices");
-                var msg = (Map<String, String>) choices.get(0).get("message");
-                return msg.get("content");
-            }
-            return "Summary unavailable.";
-        } catch (Exception e) {
-            return "Summary generation failed: " + e.getMessage();
-        }
-    }
 
-    private String generatePlaceholder(String text) {
-        int words = text.split("\\s+").length;
-        return String.format(
-            "[AI PLACEHOLDER] ~%d words. Add your OpenAI key to application.properties.",
-            words);
+            Map<String, Object> body = new HashMap<>();
+            body.put("model", model);
+            body.put("prompt", "Summarize in 3-5 sentences:\n\n" + text);
+            body.put("stream", false);
+
+            HttpEntity<Map<String, Object>> request =
+                    new HttpEntity<>(body, headers);
+
+            ResponseEntity<Map> response =
+                    restTemplate.postForEntity(apiUrl, request, Map.class);
+
+            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+                return (String) response.getBody().get("response");
+            }
+
+            return "Summary unavailable.";
+
+        } catch (Exception e) {
+            return "Ollama summary failed: " + e.getMessage();
+        }
     }
 }
